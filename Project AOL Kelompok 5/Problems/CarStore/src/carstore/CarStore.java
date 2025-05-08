@@ -50,7 +50,6 @@ import java.util.HashMap;
     
     
     // Customer
-    
    public void insertCustomer(  Customer customer){
   customers.put(customer.getId(), customer);}
    
