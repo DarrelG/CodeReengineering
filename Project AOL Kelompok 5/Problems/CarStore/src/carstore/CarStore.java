@@ -9,6 +9,16 @@ Summary of CarStore :
 2- has some motheds that make buying process easy  
 */
 
+/*
+ * Code Smell	: Comments
+ * Reason		: Banyak komentar yang tidak perlu
+ * Solution		: Hapus Komentar
+ * 
+ * Code Smell	: Speculative Generality
+ * Reason		: Method searchBy tidak digunakam dimanapun
+ * Solution		: Hapus method yang tidak perlu
+ */
+
 import java.util.HashMap;
  public class CarStore extends Profile {
      
@@ -137,6 +147,7 @@ Return :no thing
 Description :- show  the basic details of  all vehicles in invevtory 
 */
  public void showInventory(){
+	 
   for (int key :inventory.keySet()){
   System.out.println(inventory.get(key).showDetetails());
   }  

@@ -6,6 +6,21 @@ date : during studing at firstTerm and mid trem vacation
 Summary of  Car Store App:
 1- test all classes and recat with customer with buy method 
 */
+
+/*
+ * Code Smell 	: Large Class
+ * Reason		: Class ini menampung banyak metode seperti generateVihicle dan generateStaff yang harusnya merupakan class sendiri
+ * Solution		: Ekstrak Class
+ * 
+ * Code Smell	: Long Method
+ * Reson		: Method main menghandle banyak sekali tugas
+ * Solution		: Extract Class
+ * 
+ * Code Smell	: Comments
+ * Reason		: Banyak komentar yang tidak terlalu penting
+ * Solution		: Hapus komentar
+ */
+
 import java.util.Scanner;
 public class CarStoreApp {
     public static void main(String[] args) {
@@ -330,10 +345,7 @@ public class CarStoreApp {
            }} break;
        } return model;}
        
-       
-       
-       
-          // random country     
+           
         public static String randomCountry(){
            int random= (int)(Math.random()*11);
        switch(random){
