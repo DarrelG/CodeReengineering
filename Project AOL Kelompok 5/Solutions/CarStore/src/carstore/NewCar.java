@@ -31,9 +31,9 @@ public class NewCar extends Vehicle {
     private boolean hasExtendedWarranty;
 
     public NewCar(String model, String make, String madeIn, String colour, String fuelType,
-                  int ID, double speed, double power, double price, int yearIntroduced,
+                  int id, double speed, double power, double price, int yearIntroduced,
                   boolean airbags, boolean heater, boolean speakers, boolean fogLamps) {
-        super(model, make, madeIn, colour, fuelType, ID, speed, power, price, 
+        super(model, make, madeIn, colour, fuelType, id, speed, power, price, 
               yearIntroduced, airbags, heater, speakers, fogLamps);
         this.warrantyPeriodMonths = 36;
         this.hasExtendedWarranty = false;

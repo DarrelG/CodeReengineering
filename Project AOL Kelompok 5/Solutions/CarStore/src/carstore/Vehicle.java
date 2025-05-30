@@ -37,7 +37,7 @@ public class Vehicle {
         private String fuelType;
         private double speed;
         private double price;
-        private int ID;
+        private int id;
         private double power;
         private int yearIntroduced;
         private boolean airbags;
@@ -51,7 +51,7 @@ public class Vehicle {
                 this.madeIn = data.getMadeIn();
                 this.colour = data.getColour();
                 this.fuelType = data.getFuelType();
-                this.ID = data.getID();
+                this.id = data.getID();
                 this.speed = data.getSpeed();
                 this.power = data.getPower();
                 this.price = data.getPrice();
@@ -66,7 +66,7 @@ public class Vehicle {
         public String toString() {
                 return "" + getModel() + "\t" + getMake() + "\t" + yearIntroduced +
                                 "\t" + getMadeIn() +
-                                "\t" + getColour() + "\t" + fuelType + "\t" + getSpeed() + "\t" + ID + "\t"
+                                "\t" + getColour() + "\t" + fuelType + "\t" + getSpeed() + "\t" + id + "\t"
                                 + getPower() + "\t" + price + "\t  " + getAirbags() + "\t " + getHeater() +
                                 "\t  " + getSpeakers()
                                 + "\t " + getFogLamps() + "\n";
@@ -80,7 +80,7 @@ public class Vehicle {
                                 this.madeIn,
                                 this.colour,
                                 this.fuelType,
-                                this.ID,
+                                this.id,
                                 this.speed,
                                 this.power,
                                 this.price,
@@ -108,7 +108,7 @@ public class Vehicle {
                 return "" + getModel() + " " + getMake() + " " +
                                 " " + getMadeIn() +
                                 " " + getColour() + "   " + fuelType + "\t       " + yearIntroduced + "\t\t"
-                                + getSpeed() + "     " + ID + "\t"
+                                + getSpeed() + "     " + id + "\t"
                                 + getPower() + "\t" + price;
         }
 
@@ -149,7 +149,7 @@ public class Vehicle {
         }
 
         public int getID() {
-                return ID;
+                return id;
         }
 
         public int getYearIntroduced() {

@@ -8,7 +8,7 @@ public class VehicleData {
     private String fuelType;
     private double speed;
     private double price;
-    private int iD;
+    private int id;
     private double power;
     private int yearIntroduced;
     private boolean airbags;
@@ -16,7 +16,7 @@ public class VehicleData {
     private boolean speakers;
     private boolean fogLamps;
 
-    public VehicleData(String model, String make, String madeIn, String colour, String fuelType, int iD,
+    public VehicleData(String model, String make, String madeIn, String colour, String fuelType, int id,
             double speed, double power, double price, int yearIntroduced, boolean airbags,
             boolean heater, boolean speakers, boolean fogLamps) {
         this.speakers = speakers;
@@ -26,7 +26,7 @@ public class VehicleData {
         this.fuelType = fuelType;
         this.model = model;
         this.make = make;
-        this.iD = iD;
+        this.id = id;
         this.colour = colour;
         this.power = power;
         this.price = price;
@@ -64,7 +64,7 @@ public class VehicleData {
     }
 
     public int getID() {
-        return iD;
+        return id;
     }
 
     public double getPower() {
