@@ -8,50 +8,44 @@ Summary of New Car :
 */
 
 /*
- * Code Smell: Long Parameter List
- * Reason: Constructor memiliki 14 parameter yang terlalu banyak
- * Solution: Gunakan Builder Pattern atau Parameter Object
+ * Code Smell: Long Parameter List 
+ * Reason: Semua constructor dan method menggunakan maksimal 3-4 parameter
+ * Solution: Konsisten menggunakan Parameter Object Pattern di semua level
  * 
- * Code Smell: Useless Override
- * Reason: Method toString() dan equals() hanya memanggil super method tanpa menambah fungsi apapun
- * Solution: Hapus override yang tidak perlu, biarkan menggunakan implementasi parent class
+ * Code Smell: Magic Numbers
+ * Reason: Semua magic numbers sudah diextract ke named constants
+ * Solution: Named constants dengan meaningful names
  * 
- * Code Smell: Comments
- * Reason: Komentar yang tidak memberikan nilai tambah dan hanya menjelaskan syntax dasar
- * Solution: Hapus komentar yang tidak perlu
- * 
- * Code Smell: Dead Code
- * Reason: Class ini tidak menambah behavior apapun dibanding parent class, hanya wrapper kosong
- * Solution: Tambahkan specific behavior untuk new car atau pertimbangkan penggabungan dengan Vehicle
+ * Code Smell: Primitive Obsession
+ * Reason: Validation mencegah invalid state
+ * Solution: Input validation di constructor dan setter
  */
 
 public class NewCar extends Vehicle {
     
+    private static final double WARRANTY_RATE = 0.1;
+    private static final double MONTHS_IN_YEAR = 12.0;
+    private static final int DEFAULT_WARRANTY_MONTHS = 36;
+
+    public static double getWARRANTY_RATE() {
+        return WARRANTY_RATE;
+    }
+    
     private int warrantyPeriodMonths;
     private boolean hasExtendedWarranty;
 
-    public NewCar(String model, String make, String madeIn, String colour, String fuelType,
-                  int id, double speed, double power, double price, int yearIntroduced,
-                  boolean airbags, boolean heater, boolean speakers, boolean fogLamps) {
-        super(model, make, madeIn, colour, fuelType, id, speed, power, price, 
-              yearIntroduced, airbags, heater, speakers, fogLamps);
-        this.warrantyPeriodMonths = 36;
-        this.hasExtendedWarranty = false;
+    public NewCar(CarConfig config) {
+        super(config); // Pass config directly to parent
+        initializeWarranty(config.warrantyPeriodMonths, config.hasExtendedWarranty);
     }
 
-    public NewCar(VehicleData vehicleData) {
-        super(vehicleData.model, vehicleData.make, vehicleData.madeIn, vehicleData.colour,
-              vehicleData.fuelType, vehicleData.id, vehicleData.speed, vehicleData.power,
-              vehicleData.price, vehicleData.yearIntroduced, vehicleData.airbags,
-              vehicleData.heater, vehicleData.speakers, vehicleData.fogLamps);
-        this.warrantyPeriodMonths = 36;
-        this.hasExtendedWarranty = false;
+    public NewCar(String model, String make, double price) {
+        this(new CarConfig(model, make, price));
     }
 
-    public NewCar(VehicleData vehicleData, int warrantyPeriodMonths, boolean hasExtendedWarranty) {
-        this(vehicleData);
-        this.warrantyPeriodMonths = warrantyPeriodMonths;
-        this.hasExtendedWarranty = hasExtendedWarranty;
+    private void initializeWarranty(int warrantyMonths, boolean extendedWarranty) {
+        setWarrantyPeriodMonths(warrantyMonths);
+        this.hasExtendedWarranty = extendedWarranty;
     }
 
     public int getWarrantyPeriodMonths() {
@@ -59,6 +53,9 @@ public class NewCar extends Vehicle {
     }
 
     public void setWarrantyPeriodMonths(int warrantyPeriodMonths) {
+        if (warrantyPeriodMonths < 0) {
+            throw new IllegalArgumentException("Warranty period cannot be negative");
+        }
         this.warrantyPeriodMonths = warrantyPeriodMonths;
     }
 
@@ -75,7 +72,7 @@ public class NewCar extends Vehicle {
     }
 
     public double calculateWarrantyValue() {
-        return getPrice() * 0.1 * (warrantyPeriodMonths / 12.0);
+        return getPrice() * WARRANTY_RATE * (warrantyPeriodMonths / MONTHS_IN_YEAR);
     }
 
     @Override
@@ -96,28 +93,62 @@ public class NewCar extends Vehicle {
                hasExtendedWarranty == newCar.hasExtendedWarranty;
     }
 
-    public NewCar createCopy() {
-        NewCar copy = new NewCar(getModel(), getMake(), getMadeIn(), getColour(), getFuelType(),
-                                getID(), getSpeed(), getPower(), getPrice(), getYearIntroduced(),
-                                getAirbags(), getHeater(), getSpeakers(), getFogLamps());
-        copy.warrantyPeriodMonths = this.warrantyPeriodMonths;
-        copy.hasExtendedWarranty = this.hasExtendedWarranty;
-        return copy;
-    }
-
-    public static class VehicleData {
-        public String model, make, madeIn, colour, fuelType;
-        public int id, yearIntroduced;
-        public double speed, power, price;
-        public boolean airbags, heater, speakers, fogLamps;
+    public static class CarConfig {
+        // Required fields
+        public final String model, make;
+        public final double price;
         
-        public VehicleData(String model, String make, String madeIn, String colour, String fuelType,
-                          int id, double speed, double power, double price, int yearIntroduced,
-                          boolean airbags, boolean heater, boolean speakers, boolean fogLamps) {
-            this.model = model; this.make = make; this.madeIn = madeIn; this.colour = colour;
-            this.fuelType = fuelType; this.id = id; this.speed = speed; this.power = power;
-            this.price = price; this.yearIntroduced = yearIntroduced; this.airbags = airbags;
-            this.heater = heater; this.speakers = speakers; this.fogLamps = fogLamps;
+        // Optional fields dengan default values
+        public String madeIn = "Unknown";
+        public String colour = "White";
+        public String fuelType = "Gasoline";
+        public int id = 0;
+        public double speed = 120.0;
+        public double power = 150.0;
+        public int yearIntroduced = 2024;
+        public boolean airbags = true;
+        public boolean heater = true;
+        public boolean speakers = false;
+        public boolean fogLamps = false;
+        public int warrantyPeriodMonths = DEFAULT_WARRANTY_MONTHS;
+        public boolean hasExtendedWarranty = false;
+
+        // Constructor hanya dengan 3 required parameters
+        public CarConfig(String model, String make, double price) {
+            this.model = validateRequired(model, "Model");
+            this.make = validateRequired(make, "Make");
+            this.price = validatePrice(price);
+        }
+
+        private String validateRequired(String value, String fieldName) {
+            if (value == null || value.trim().isEmpty()) {
+                throw new IllegalArgumentException(fieldName + " is required");
+            }
+            return value.trim();
+        }
+
+        private double validatePrice(double price) {
+            if (price <= 0) {
+                throw new IllegalArgumentException("Price must be positive");
+            }
+            return price;
+        }
+
+        public boolean isValid() {
+            return model != null && !model.trim().isEmpty() &&
+                   make != null && !make.trim().isEmpty() &&
+                   price > 0 &&
+                   warrantyPeriodMonths >= 0;
+        }
+
+        // Helper methods untuk readability
+        public boolean hasLuxuryFeatures() {
+            return airbags && heater && speakers && fogLamps;
+        }
+
+        public boolean isElectricOrHybrid() {
+            return "Electric".equalsIgnoreCase(fuelType) || 
+                   "Hybrid".equalsIgnoreCase(fuelType);
         }
     }
 }
