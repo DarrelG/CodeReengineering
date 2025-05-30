@@ -5,32 +5,32 @@ public class VehicleData {
     private String make;
     private String madeIn;
     private String colour;
-    private String FuelType;
+    private String fuelType;
     private double speed;
     private double price;
-    private int ID;
+    private int iD;
     private double power;
-    private int YearIntroduced;
-    private boolean Airbags;
-    private boolean Heater;
-    private boolean Speakers;
-    private boolean FogLamps;
+    private int yearIntroduced;
+    private boolean airbags;
+    private boolean heater;
+    private boolean speakers;
+    private boolean fogLamps;
 
-    public VehicleData(String model, String make, String madeIn, String colour, String FuelType, int ID,
-            double speed, double power, double price, int YearIntroduced, boolean Airbags,
-            boolean Heater, boolean Speakers, boolean FogLamps) {
-        this.Speakers = Speakers;
-        this.Heater = Heater;
-        this.Airbags = Airbags;
-        this.FogLamps = FogLamps;
-        this.FuelType = FuelType;
+    public VehicleData(String model, String make, String madeIn, String colour, String fuelType, int iD,
+            double speed, double power, double price, int yearIntroduced, boolean airbags,
+            boolean heater, boolean speakers, boolean fogLamps) {
+        this.speakers = speakers;
+        this.heater = heater;
+        this.airbags = airbags;
+        this.fogLamps = fogLamps;
+        this.fuelType = fuelType;
         this.model = model;
         this.make = make;
-        this.ID = ID;
+        this.iD = iD;
         this.colour = colour;
         this.power = power;
         this.price = price;
-        this.YearIntroduced = YearIntroduced;
+        this.yearIntroduced = yearIntroduced;
         this.speed = speed;
         this.madeIn = madeIn;
     }
@@ -52,7 +52,7 @@ public class VehicleData {
     }
 
     public String getFuelType() {
-        return FuelType;
+        return fuelType;
     }
 
     public double getSpeed() {
@@ -64,7 +64,7 @@ public class VehicleData {
     }
 
     public int getID() {
-        return ID;
+        return iD;
     }
 
     public double getPower() {
@@ -72,22 +72,22 @@ public class VehicleData {
     }
 
     public int getYearIntroduced() {
-        return YearIntroduced;
+        return yearIntroduced;
     }
 
     public boolean getAirbags() {
-        return Airbags;
+        return airbags;
     }
 
     public boolean getHeater() {
-        return Heater;
+        return heater;
     }
 
     public boolean getSpeakers() {
-        return Speakers;
+        return speakers;
     }
 
     public boolean getFogLamps() {
-        return FogLamps;
+        return fogLamps;
     }
 }

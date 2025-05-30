@@ -98,7 +98,7 @@ public class NewCar extends Vehicle {
 
     public NewCar createCopy() {
         NewCar copy = new NewCar(getModel(), getMake(), getMadeIn(), getColour(), getFuelType(),
-                                getId(), getSpeed(), getPower(), getPrice(), getYearIntroduced(),
+                                getID(), getSpeed(), getPower(), getPrice(), getYearIntroduced(),
                                 getAirbags(), getHeater(), getSpeakers(), getFogLamps());
         copy.warrantyPeriodMonths = this.warrantyPeriodMonths;
         copy.hasExtendedWarranty = this.hasExtendedWarranty;

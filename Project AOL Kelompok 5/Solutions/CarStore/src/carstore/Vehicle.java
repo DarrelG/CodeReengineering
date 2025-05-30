@@ -34,49 +34,43 @@ public class Vehicle {
         private String make;
         private String madeIn;
         private String colour;
-        private String FuelType;
+        private String fuelType;
         private double speed;
         private double price;
         private int ID;
         private double power;
-        private int YearIntroduced;
-        private boolean Airbags;
-        private boolean Heater;
-        private boolean Speakers;
-        private boolean FogLamps;
+        private int yearIntroduced;
+        private boolean airbags;
+        private boolean heater;
+        private boolean speakers;
+        private boolean fogLamps;
 
         public Vehicle(VehicleData data) {
                 this.model = data.getModel();
                 this.make = data.getMake();
                 this.madeIn = data.getMadeIn();
                 this.colour = data.getColour();
-                this.FuelType = data.getFuelType();
+                this.fuelType = data.getFuelType();
                 this.ID = data.getID();
                 this.speed = data.getSpeed();
                 this.power = data.getPower();
                 this.price = data.getPrice();
-                this.YearIntroduced = data.getYearIntroduced();
-                this.Airbags = data.getAirbags();
-                this.Heater = data.getHeater();
-                this.Speakers = data.getSpeakers();
-                this.FogLamps = data.getFogLamps();
+                this.yearIntroduced = data.getYearIntroduced();
+                this.airbags = data.getAirbags();
+                this.heater = data.getHeater();
+                this.speakers = data.getSpeakers();
+                this.fogLamps = data.getFogLamps();
         }
-
-        // Description: this function is type of override which used to show details
-        // ofatributes of class vehicle.
 
         @Override
         public String toString() {
-                return "" + getModel() + "\t" + getMake() + "\t" + YearIntroduced +
+                return "" + getModel() + "\t" + getMake() + "\t" + yearIntroduced +
                                 "\t" + getMadeIn() +
-                                "\t" + getColour() + "\t" + FuelType + "\t" + getSpeed() + "\t" + ID + "\t"
+                                "\t" + getColour() + "\t" + fuelType + "\t" + getSpeed() + "\t" + ID + "\t"
                                 + getPower() + "\t" + price + "\t  " + getAirbags() + "\t " + getHeater() +
                                 "\t  " + getSpeakers()
                                 + "\t " + getFogLamps() + "\n";
         }
-
-        // Description:the purpose of this fuction :- copy of the object on which it is
-        // called
 
         @Override
         public Vehicle clone() {
@@ -85,63 +79,53 @@ public class Vehicle {
                                 this.make,
                                 this.madeIn,
                                 this.colour,
-                                this.FuelType,
+                                this.fuelType,
                                 this.ID,
                                 this.speed,
                                 this.power,
                                 this.price,
-                                this.YearIntroduced,
-                                this.Airbags,
-                                this.Heater,
-                                this.Speakers,
-                                this.FogLamps);
+                                this.yearIntroduced,
+                                this.airbags,
+                                this.heater,
+                                this.speakers,
+                                this.fogLamps);
 
                 return new Vehicle(data);
         }
 
-        // Description:the purpose of this fuction :- compare the object on which it is
-        // called with its parmeters
         @Override
         public boolean equals(Object object) {
                 Vehicle car = (Vehicle) object;
                 return car.make.equals(make) && car.colour.equals(colour)
                                 && car.madeIn.equals(madeIn) && car.model.equals(model)
                                 && car.power == power && car.speed == speed && car.price == price
-                                && car.getSpeakers() == Speakers &&
-                                FogLamps == car.getFogLamps() &&
-                                Heater == car.getHeater() && Airbags == car.getAirbags();
+                                && car.getSpeakers() == speakers &&
+                                fogLamps == car.getFogLamps() &&
+                                heater == car.getHeater() && airbags == car.getAirbags();
         }
-
-        /*
-         * summary of this function
-         * parameters : no thing
-         * Return :( String )
-         * Description:the purpose of this fuction :- show the basic details of any
-         * vehicle
-         */
 
         public String showDetetails() {
                 return "" + getModel() + " " + getMake() + " " +
                                 " " + getMadeIn() +
-                                " " + getColour() + "   " + FuelType + "\t       " + YearIntroduced + "\t\t"
+                                " " + getColour() + "   " + fuelType + "\t       " + yearIntroduced + "\t\t"
                                 + getSpeed() + "     " + ID + "\t"
                                 + getPower() + "\t" + price;
         }
 
         public boolean getAirbags() {
-                return Airbags;
+                return airbags;
         }
 
         public boolean getHeater() {
-                return Heater;
+                return heater;
         }
 
         public boolean getFogLamps() {
-                return FogLamps;
+                return fogLamps;
         }
 
         public boolean getSpeakers() {
-                return Speakers;
+                return speakers;
         }
 
         public String getModel() {
@@ -149,7 +133,7 @@ public class Vehicle {
         }
 
         public String getFuelType() {
-                return FuelType;
+                return fuelType;
         }
 
         public String getMake() {
@@ -169,7 +153,7 @@ public class Vehicle {
         }
 
         public int getYearIntroduced() {
-                return YearIntroduced;
+                return yearIntroduced;
         }
 
         public double getSpeed() {
