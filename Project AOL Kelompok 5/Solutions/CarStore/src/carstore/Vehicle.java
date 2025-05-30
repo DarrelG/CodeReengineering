@@ -11,232 +11,177 @@ the porbuse of this Vehicle is
 3- collection of most of types of cars.
 */
 
+/*
+ * Smell code   :
+ * Reason       : the class Vehicle is too large and has many attributes
+ * Solution     :  we can use the interface to reduce the size of this class
+ * 
+ * Smell code   : The Comments
+ * Reason       : Banyak komentar yang tidak penting
+ * Solution     : Menghapus comment dan mengganti penamaan variable agar lebih deskriptif
+ * 
+ * Smell code   : Data Class
+ * Reason       : Ada Constructor tetapi ada setter
+ * Solution     : Menghapus setter pada class Staff
+ * 
+ * Smell code   : Deficient Encapsulation
+ * Reason       : Sudah berupaya melakukan encapsulation, tetapi access modifiernya salah
+ * Solution     : Ubah access modifier pada atribut menjadi private
+ */
 
 public class Vehicle {
-    
-//the atributes that any type of car shoud have it.
+        private String model;
+        private String make;
+        private String madeIn;
+        private String colour;
+        private String FuelType;
+        private double speed;
+        private double price;
+        private int ID;
+        private double power;
+        private int YearIntroduced;
+        private boolean Airbags;
+        private boolean Heater;
+        private boolean Speakers;
+        private boolean FogLamps;
 
-protected String model ;
-protected String make ;
-protected String madeIn ;
-protected String colour ;
-protected String FuelType ;
-protected double speed ;
-protected double price ;
-protected   int ID ; 
-protected double power ;
-protected int YearIntroduced ;
-protected boolean Airbags  ; 
-protected  boolean Heater; 
-protected  boolean Speakers ; 
-protected  boolean FogLamps ; 
+        public Vehicle(VehicleData data) {
+                this.model = data.getModel();
+                this.make = data.getMake();
+                this.madeIn = data.getMadeIn();
+                this.colour = data.getColour();
+                this.FuelType = data.getFuelType();
+                this.ID = data.getID();
+                this.speed = data.getSpeed();
+                this.power = data.getPower();
+                this.price = data.getPrice();
+                this.YearIntroduced = data.getYearIntroduced();
+                this.Airbags = data.getAirbags();
+                this.Heater = data.getHeater();
+                this.Speakers = data.getSpeakers();
+                this.FogLamps = data.getFogLamps();
+        }
 
+        // Description: this function is type of override which used to show details
+        // ofatributes of class vehicle.
 
+        @Override
+        public String toString() {
+                return "" + getModel() + "\t" + getMake() + "\t" + YearIntroduced +
+                                "\t" + getMadeIn() +
+                                "\t" + getColour() + "\t" + FuelType + "\t" + getSpeed() + "\t" + ID + "\t"
+                                + getPower() + "\t" + price + "\t  " + getAirbags() + "\t " + getHeater() +
+                                "\t  " + getSpeakers()
+                                + "\t " + getFogLamps() + "\n";
+        }
 
-//constructor
+        // Description:the purpose of this fuction :- copy of the object on which it is
+        // called
 
-public Vehicle(String model,String make,String madeIn,String colour, String FuelType ,int ID,
-        double speed ,double power,double price ,int YearIntroduced ,boolean Airbags,
-            boolean Heater ,boolean Speakers,boolean FogLamps
-             ){
-this.Speakers=Speakers;
-this.Heater=Heater;
-this.Airbags=Airbags;   
-this.FogLamps=FogLamps;
-this.FuelType=FuelType;
-this.model=model;
-this.make=make;
-this.ID = ID;
-this.colour=colour;
-this.power=power ;
-this.price=price;
-this.YearIntroduced=YearIntroduced;
-this.speed=speed;
-this.madeIn=madeIn;
-}
+        @Override
+        public Vehicle clone() {
+                VehicleData data = new VehicleData(
+                                this.model,
+                                this.make,
+                                this.madeIn,
+                                this.colour,
+                                this.FuelType,
+                                this.ID,
+                                this.speed,
+                                this.power,
+                                this.price,
+                                this.YearIntroduced,
+                                this.Airbags,
+                                this.Heater,
+                                this.Speakers,
+                                this.FogLamps);
 
+                return new Vehicle(data);
+        }
 
+        // Description:the purpose of this fuction :- compare the object on which it is
+        // called with its parmeters
+        @Override
+        public boolean equals(Object object) {
+                Vehicle car = (Vehicle) object;
+                return car.make.equals(make) && car.colour.equals(colour)
+                                && car.madeIn.equals(madeIn) && car.model.equals(model)
+                                && car.power == power && car.speed == speed && car.price == price
+                                && car.getSpeakers() == Speakers &&
+                                FogLamps == car.getFogLamps() &&
+                                Heater == car.getHeater() && Airbags == car.getAirbags();
+        }
 
-//Description: this function is type of override which used to show details ofatributes of class vehicle.
+        /*
+         * summary of this function
+         * parameters : no thing
+         * Return :( String )
+         * Description:the purpose of this fuction :- show the basic details of any
+         * vehicle
+         */
 
+        public String showDetetails() {
+                return "" + getModel() + " " + getMake() + " " +
+                                " " + getMadeIn() +
+                                " " + getColour() + "   " + FuelType + "\t       " + YearIntroduced + "\t\t"
+                                + getSpeed() + "     " + ID + "\t"
+                                + getPower() + "\t" + price;
+        }
 
-@Override
-public String toString(){
-return ""+getModel()+"\t"+getMake()+"\t"+YearIntroduced+
-        "\t" +getMadeIn() +
-        "\t"+getColour()+"\t"+FuelType+"\t"+getSpeed()+"\t"+ID+"\t"
-        +getPower()+"\t" +price +"\t  "+getAirbags()+"\t "+getHeater()+
-        "\t  "+getSpeakers()
-                +"\t "+getFogLamps()+"\n" ;
-}
+        public boolean getAirbags() {
+                return Airbags;
+        }
 
+        public boolean getHeater() {
+                return Heater;
+        }
 
- 
-// Description:the purpose of this fuction :-  copy of the object on which it is called
+        public boolean getFogLamps() {
+                return FogLamps;
+        }
 
-@Override
-public Vehicle clone(){
-Vehicle car = new Vehicle ( model, make, madeIn, colour,FuelType,ID, speed,  power,price,
-        YearIntroduced  ,Airbags, Heater , Speakers,
-           FogLamps) ; 
-return car ;
-}
+        public boolean getSpeakers() {
+                return Speakers;
+        }
 
+        public String getModel() {
+                return model;
+        }
 
-// Description:the purpose of this fuction :-  compare the object on which it is called with its parmeters
- @Override
-public boolean equals(Object o){
-Vehicle car =(Vehicle)o ;
-       return car.make.equals(make) && car.colour.equals(colour) 
-               &&car.madeIn.equals(madeIn) && car.model.equals(model)
-               && car.power==power && car.speed == speed &&car.price==price&&car.getSpeakers()==Speakers&&
-               FogLamps==car.getFogLamps() &&
-               Heater==car.getHeater()&&Airbags==car.getAirbags() ;
-}
+        public String getFuelType() {
+                return FuelType;
+        }
 
+        public String getMake() {
+                return make;
+        }
 
-/*
-summary of this function 
-parameters : no thing
-Return :( String ) 
-Description:the purpose of this fuction :- show  the basic details of any vehicle
-*/
+        public String getMadeIn() {
+                return madeIn;
+        }
 
-public String showDetetails(){
-return ""+getModel()+" "+getMake()+" "+
-        " " +getMadeIn() +
-        " "+getColour()+"   "+FuelType+"\t       "+YearIntroduced+"\t\t"+getSpeed()+"     "+ID+"\t"
-        +getPower()+"\t" +price ;
-}
+        public String getColour() {
+                return colour;
+        }
 
+        public int getID() {
+                return ID;
+        }
 
-/*
-Seter and getter
-Description: the purpose of this fuctions :- Set and get the value of the instance variable 
-*/
+        public int getYearIntroduced() {
+                return YearIntroduced;
+        }
 
-public void setModel(String model){
-this.model = model;
-}
+        public double getSpeed() {
+                return speed;
+        }
 
+        public double getPower() {
+                return power;
+        }
 
-public void setMake(String make){
-this.make=make;
-}
-
-
-public void setFuelType(String FuelType){
-this.FuelType=FuelType;
-}
-
-
-public void setMadeIn(String madeIn){
-this.madeIn=madeIn;
-}
-
-
-public void setColour(String colour){
-this.colour=colour;
-}
-
-
-  public  void setAirbags( boolean Airbags){
-   this.Airbags=   Airbags;}
-   
-  
-   public boolean getAirbags(){return Airbags ;}
-   
-   
-   public  void setHeater(boolean Heater){
-   this.Heater=Heater;}
-   
-   
-    public boolean getHeater(){return Heater ;}
-
-    
-   public  void setFogLamps(boolean FogLamps){
-   this.FogLamps=FogLamps;}
-   
-   
-public boolean getFogLamps(){return FogLamps ;}
-
-    
-public  void setSpeakers(boolean Speakers){
-   this.Speakers=Speakers;}
-   
-   
-    public boolean getSpeakers(){
-        return Speakers ;}
-    
-
-public void setYearIntroduced(int YearIntroduced){
-this.YearIntroduced=YearIntroduced;
-}
-
-
-public void setPower(double power){
-this.power=power;
-}
-
-
-public void setSpeed(double speed){
-this.speed=speed;
-}
-
-
-public void setPrice(double price){
-this.price=price;
-}
-
-
-public String getModel(){
-return model;
-}
-
-
- public String getFuelType(){
-return FuelType ;
-}
- 
- 
-public String getMake(){
-return make;
-}
-
-
-public String getMadeIn(){
-return madeIn;
-}
-
-
-public String getColour(){
-return colour;
-} 
-
-
-public int getID(){
-return ID;
-}
-
-
-public int getYearIntroduced(){
-return YearIntroduced ;
-}
-
-
-public double getSpeed(){
-return speed;
-}
-
-
-public double getPower(){
-return power;
-}
-
-
-public double getPrice(){
-return price;
-}
-
+        public double getPrice() {
+                return price;
+        }
 
 }

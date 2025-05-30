@@ -8,17 +8,17 @@ Summary of Staff :
 */
 
 /*
- * Smell code : Long parameter list
- * Reason     : Parameter pada constructor telalu panjang.
- * Solution   : Membuat objek ProfileData untuk mengurangi parameter pada constructor
+ * Smell code   : Long parameter list
+ * Reason       : Parameter pada constructor telalu panjang.
+ * Solution     : Membuat objek ProfileData untuk mengurangi parameter pada constructor
  * 
- * Smell code : The Comments
- * Reason     : Banyak komentar yang tidak penting
- * Solution   : Menghapus comment dan mengganti penamaan variable agar lebih deskriptif
+ * Smell code   : The Comments
+ * Reason       : Banyak komentar yang tidak penting
+ * Solution     : Menghapus comment dan mengganti penamaan variable agar lebih deskriptif
  * 
- * Smell code : Data Class
- * Reason     : Ada Constructor tetapi ada setter
- * Solution   : Menghapus setter pada class Staff
+ * Smell code   : Data Class
+ * Reason       : Ada Constructor tetapi ada setter
+ * Solution     : Menghapus setter pada class Staff
  */
 
 public class Staff extends Profile {
@@ -27,7 +27,7 @@ public class Staff extends Profile {
     private double retier;
 
     public Staff(ProfileData profileData, String position, double salary, double retier) {
-        super(profileData.name, profileData.address, profileData.contactNumber, profileData.email, profileData.ID);
+        super(profileData.getName(), profileData.getAddress(), profileData.getContactNumber(), profileData.getEmail(), profileData.getID());
         this.salary = salary;
         this.retier = retier;
         this.position = position;

@@ -77,11 +77,12 @@ public class CarStoreApp {
 	private static void insertCar(CarStore Shop) {
 		for(int i =1 ; i<=10 ;i++){
             
-	        Vehicle mac  = new NewCar(GenerateRandom.randomModel(GenerateRandom.randomMake()), GenerateRandom.randomMake(), GenerateRandom.randomCountry(),
+	        VehicleData vehicleData  = new VehicleData(GenerateRandom.randomModel(GenerateRandom.randomMake()), GenerateRandom.randomMake(), GenerateRandom.randomCountry(),
 	        		GenerateRandom.randomColour(),  GenerateRandom.randomFuelType(), i, GenerateRandom.randomNumber(300,150), GenerateRandom.randomNumber(15,9), GenerateRandom.randomNumber(50000,17000), 
 	        		GenerateRandom.randomNumber(2017,1995), GenerateRandom.randomBoolean(),GenerateRandom.randomBoolean(),GenerateRandom.randomBoolean(),GenerateRandom.randomBoolean());
 	        
-	        Shop.insertCar(mac);}
+	        NewCar car = new NewCar(vehicleData);
+			Shop.insertCar(car);
 	}
 	
 	private static void insertStaff(CarStore Shop) {
