@@ -14,69 +14,76 @@ Summary of Profile:
 // smell code : the comments
 // reason : ada komentar yang tidak perlu
 // solution : remove the comments that not needed
-public class Profile {
-    
-   protected String name ;
-   protected String address ;
-   protected String contactNumber ;
-   protected String email ;
-   protected int ID ;
-   
-   
-   public Profile(String name,String address,String contactNumber,String email,int ID){
-       this.ID=ID;
-       this.address=address;
-       this.email=email;
-       this.name=name;
-       this.contactNumber=contactNumber;
-   }
-   
-   
 
-public String getName() {
-        return name;
+
+// smell code : Long parameter list
+// reason : parameter pada constructor terlalu panjang
+// solution : membuat objek ProfileData untuk mengurangi parameter pada constructor
+
+
+import java.util.Objects;
+
+public class Profile {
+
+    private final ProfileData data;
+
+    public Profile(ProfileData data) {
+        this.data = data;
+    }
+
+    public String getName() {
+        return data.getName();
     }
 
     public String getAddress() {
-        return address;
+        return data.getAddress();
     }
 
     public String getContactNumber() {
-        return contactNumber;
+        return data.getContactNumber();
     }
 
     public String getEmail() {
-        return email;
+        return data.getEmail();
     }
 
     public int getId() {
-        return ID;
+        return data.getID();
     }
 
     @Override
     public String toString() {
-        return String.format("%s\t%s\t%s\t%s\t%d", name, address, contactNumber, email, ID);
+        return String.format("%s\t%s\t%s\t%s\t%d",
+                data.getName(),
+                data.getAddress(),
+                data.getContactNumber(),
+                data.getEmail(),
+                data.getID());
     }
 
     @Override
     public Profile clone() {
-        return new Profile(name, address, contactNumber, email, ID);
+        return new Profile(new ProfileData(
+                data.getName(),
+                data.getAddress(),
+                data.getContactNumber(),
+                data.getEmail(),
+                data.getID()));
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Profile)) return false;
-
         Profile other = (Profile) obj;
-        return ID == other.ID &&
-                name.equals(other.name) &&
-                address.equals(other.address) &&
-                contactNumber.equals(other.contactNumber) &&
-                email.equals(other.email);
+        return Objects.equals(data.getName(), other.getName()) &&
+               Objects.equals(data.getAddress(), other.getAddress()) &&
+               Objects.equals(data.getContactNumber(), other.getContactNumber()) &&
+               Objects.equals(data.getEmail(), other.getEmail()) &&
+               data.getID() == other.getId();
     }
-     @Override
+
+    @Override
     public int hashCode() {
-        return java.util.Objects.hash(name, address, contactNumber, email, ID);
+        return Objects.hash(data.getName(), data.getAddress(),
+                data.getContactNumber(), data.getEmail(), data.getID());
     }
 }
