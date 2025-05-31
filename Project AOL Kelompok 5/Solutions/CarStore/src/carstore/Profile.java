@@ -7,11 +7,15 @@ Summary of Profile:
 1-  purpose of this class is make some thing that has common attributes of many classes in our project
 2- to reduce the code written 
 */
+ // smell code : Data class
+// reason : Sudah ada constructor ada setter lagi
+// solution : remove setter and use constructor only
 
+// smell code : the comments
+// reason : ada komentar yang tidak perlu
+// solution : remove the comments that not needed
 public class Profile {
     
-    
-    //the atributes that any type of car shoud have it.
    protected String name ;
    protected String address ;
    protected String contactNumber ;
@@ -19,7 +23,6 @@ public class Profile {
    protected int ID ;
    
    
-   //constuctor 
    public Profile(String name,String address,String contactNumber,String email,int ID){
        this.ID=ID;
        this.address=address;
@@ -29,78 +32,51 @@ public class Profile {
    }
    
    
-/*
-Seter and getter
-Description: the purpose of this fuctions :- Set and get the value of the instance variable 
-*/
-public void setName(String name ){
-this.name= name;}
 
+public String getName() {
+        return name;
+    }
 
-public String getName(){
-return name ;}
+    public String getAddress() {
+        return address;
+    }
 
+    public String getContactNumber() {
+        return contactNumber;
+    }
 
-public void setAddress(String address){
-this.address=address;}
+    public String getEmail() {
+        return email;
+    }
 
+    public int getId() {
+        return ID;
+    }
 
-public String getAddress(){
-return address;}
+    @Override
+    public String toString() {
+        return String.format("%s\t%s\t%s\t%s\t%d", name, address, contactNumber, email, ID);
+    }
 
+    @Override
+    public Profile clone() {
+        return new Profile(name, address, contactNumber, email, ID);
+    }
 
-public void setContactNumber(String contactNumber ){
-    this.contactNumber=contactNumber; }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Profile)) return false;
 
-
-public String getContactNumber(){
-return contactNumber ;}
-
-
-public void setEmail(String email){
-this.email=email;}
-
-
-public String getEmail(){
-return email ;}
-
-
-public void setID(int ID){
-this.ID=ID ;
+        Profile other = (Profile) obj;
+        return ID == other.ID &&
+                name.equals(other.name) &&
+                address.equals(other.address) &&
+                contactNumber.equals(other.contactNumber) &&
+                email.equals(other.email);
+    }
+     @Override
+    public int hashCode() {
+        return java.util.Objects.hash(name, address, contactNumber, email, ID);
+    }
 }
-
-
-public int getId(){
-return ID ;} 
-
-
-
-//Description: this function is type of override which used to show details of class 
-
-@Override
-public String toString (){
-return name+"\t"+address+"\t     "+contactNumber+"\t   "+email+"\t    "+ID+"\t";
-}
-
-// Description:the purpose of this fuction :-  copy of the object on which it is called
-
-@Override
-public Profile clone(){
-Profile c =new Profile (name,address,contactNumber,email,ID);
-return c; }
-
-
-// Description:the purpose of this fuction :-  compare the object on which it is called with its parmeters
-
-@Override
-public boolean equals (Object o){
-    Customer c = (Customer)o ;
-       return c.getName().equals(name)&&c.getAddress().equals(address)&&
-               c.getContactNumber()==contactNumber&&c.getEmail().equals(email)&&c.getId()==ID;
-}
-
-  
-}
-
-
-
