@@ -97,7 +97,7 @@ public class CarStoreApp {
 	
 	private static void insertCustomer(CarStore Shop) {
 		 for(int i =1 ; i<=9 ;i++){
-	        	Customer c = new Customer(GenerateRandom.randomName(), GenerateRandom.randomCountry(), GenerateRandom.randomNumber(23432525,23456721) + "",
+	        	Profile c = new Profile(GenerateRandom.randomName(), GenerateRandom.randomCountry(), GenerateRandom.randomNumber(23432525,23456721) + "",
 	        			"customer000" + i + "@gmail.com", i);
 	        	
 	        	Shop.insertCustomer(c);

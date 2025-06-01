@@ -27,7 +27,7 @@ public class CarStore extends Profile {
     private static final  String DESCRIPTION = "We love Cars--We love People.. Come experience The Car Store difference.";
     
     private  HashMap <Integer,Staff> staff = new HashMap<>() ;
-    private  HashMap <Integer,Customer> customers = new HashMap<>() ;
+     private HashMap<Integer, Profile> customers = new HashMap<>();
     private  HashMap <Integer,Vehicle> inventory = new HashMap<>() ;
 
     public CarStore (String name, String address, String contactNumber, String website, int ID) {
@@ -48,15 +48,14 @@ public class CarStore extends Profile {
     	staff.remove(ID);
     }
     
-    public void insertCustomer(  Customer customer){
-    	customers.put(customer.getId(), customer);
-    }
-   
-    public Customer searseCustomer(int ID){
-    	return customers.get(ID);
-    }
-    
-    
+   public void insertCustomer(Profile customer){
+      customers.put(customer.getId(), customer);
+  }
+
+  public Profile searseCustomer(int ID){
+      return customers.get(ID);
+  }
+
     public void deleteCustomer(int ID){
     	customers.remove(ID);
     }
@@ -129,9 +128,9 @@ public class CarStore extends Profile {
     public void showCustomersDetails(){
 		System.out.println("Name\t Address     \t Contact Number            E-mail                  ID "  );
 		
-    	for (int key :customers.keySet()){
-    		System.out.println(customers.get(key).toString());
-    	}  
-    }
+    	 for (int key :customers.keySet()){
+        System.out.println(customers.get(key).toString());
+    }  
+}
 }
 

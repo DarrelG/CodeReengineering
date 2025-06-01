@@ -7,100 +7,83 @@ Summary of Profile:
 1-  purpose of this class is make some thing that has common attributes of many classes in our project
 2- to reduce the code written 
 */
+ // smell code : Data class
+// reason : Sudah ada constructor ada setter lagi
+// solution : remove setter and use constructor only
+
+// smell code : the comments
+// reason : ada komentar yang tidak perlu
+// solution : remove the comments that not needed
+
+
+// smell code : Long parameter list
+// reason : parameter pada constructor terlalu panjang
+// solution : membuat objek ProfileData untuk mengurangi parameter pada constructor
+
+
+import java.util.Objects;
 
 public class Profile {
-    
-    
-    //the atributes that any type of car shoud have it.
-   protected String name ;
-   protected String address ;
-   protected String contactNumber ;
-   protected String email ;
-   protected int ID ;
-   
-   
-   //constuctor 
-   public Profile(String name,String address,String contactNumber,String email,int ID){
-       this.ID=ID;
-       this.address=address;
-       this.email=email;
-       this.name=name;
-       this.contactNumber=contactNumber;
-   }
-   
-   
-/*
-Seter and getter
-Description: the purpose of this fuctions :- Set and get the value of the instance variable 
-*/
-public void setName(String name ){
-this.name= name;}
 
+    private final ProfileData data;
 
-public String getName(){
-return name ;}
+    public Profile(ProfileData data) {
+        this.data = data;
+    }
 
+    public String getName() {
+        return data.getName();
+    }
 
-public void setAddress(String address){
-this.address=address;}
+    public String getAddress() {
+        return data.getAddress();
+    }
 
+    public String getContactNumber() {
+        return data.getContactNumber();
+    }
 
-public String getAddress(){
-return address;}
+    public String getEmail() {
+        return data.getEmail();
+    }
 
+    public int getId() {
+        return data.getID();
+    }
 
-public void setContactNumber(String contactNumber ){
-    this.contactNumber=contactNumber; }
+    @Override
+    public String toString() {
+        return String.format("%s\t%s\t%s\t%s\t%d",
+                data.getName(),
+                data.getAddress(),
+                data.getContactNumber(),
+                data.getEmail(),
+                data.getID());
+    }
 
+    @Override
+    public Profile clone() {
+        return new Profile(new ProfileData(
+                data.getName(),
+                data.getAddress(),
+                data.getContactNumber(),
+                data.getEmail(),
+                data.getID()));
+    }
 
-public String getContactNumber(){
-return contactNumber ;}
+    @Override
+    public boolean equals(Object obj) {
+        Profile other = (Profile) obj;
+        return Objects.equals(data.getName(), other.getName()) &&
+               Objects.equals(data.getAddress(), other.getAddress()) &&
+               Objects.equals(data.getContactNumber(), other.getContactNumber()) &&
+               Objects.equals(data.getEmail(), other.getEmail()) &&
+               data.getID() == other.getId();
+    }
 
-
-public void setEmail(String email){
-this.email=email;}
-
-
-public String getEmail(){
-return email ;}
-
-
-public void setID(int ID){
-this.ID=ID ;
+    @Override
+    public int hashCode() {
+        return Objects.hash(data.getName(), data.getAddress(),
+                data.getContactNumber(), data.getEmail(), data.getID());
+    }
 }
-
-
-public int getId(){
-return ID ;} 
-
-
-
-//Description: this function is type of override which used to show details of class 
-
-@Override
-public String toString (){
-return name+"\t"+address+"\t     "+contactNumber+"\t   "+email+"\t    "+ID+"\t";
-}
-
-// Description:the purpose of this fuction :-  copy of the object on which it is called
-
-@Override
-public Profile clone(){
-Profile c =new Profile (name,address,contactNumber,email,ID);
-return c; }
-
-
-// Description:the purpose of this fuction :-  compare the object on which it is called with its parmeters
-
-@Override
-public boolean equals (Object o){
-    Customer c = (Customer)o ;
-       return c.getName().equals(name)&&c.getAddress().equals(address)&&
-               c.getContactNumber()==contactNumber&&c.getEmail().equals(email)&&c.getId()==ID;
-}
-
-  
-}
-
-
-
