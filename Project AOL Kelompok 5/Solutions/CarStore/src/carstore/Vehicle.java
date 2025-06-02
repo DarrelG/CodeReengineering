@@ -12,10 +12,6 @@ the porbuse of this Vehicle is
 */
 
 /*
- * Smell code   :
- * Reason       : the class Vehicle is too large and has many attributes
- * Solution     :  we can use the interface to reduce the size of this class
- * 
  * Smell code   : The Comments
  * Reason       : Banyak komentar yang tidak penting
  * Solution     : Menghapus comment dan mengganti penamaan variable agar lebih deskriptif

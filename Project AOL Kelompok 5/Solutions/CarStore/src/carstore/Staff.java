@@ -24,12 +24,12 @@ Summary of Staff :
 public class Staff extends Profile {
     private String position;
     private double salary;
-    private double retier;
+    private double retire;
 
-    public Staff(ProfileData profileData, String position, double salary, double retier) {
-        super(profileData.getName(), profileData.getAddress(), profileData.getContactNumber(), profileData.getEmail(), profileData.getID());
+    public Staff(ProfileData data, String position, double salary, double retire) {
+        super(data);
         this.salary = salary;
-        this.retier = retier;
+        this.retire = retire;
         this.position = position;
     }
 
@@ -43,25 +43,31 @@ public class Staff extends Profile {
     }
 
     public Double getRetire() {
-        return retier;
+        return retire;
     }
 
     @Override
     public Profile clone() {
-        ProfileData profileData = new ProfileData(name, address, contactNumber, email, ID);
-        return new Staff(profileData, position, salary, retier);
+        ProfileData profileData = new ProfileData(
+                getName(),
+                getAddress(),
+                getContactNumber(),
+                getEmail(),
+                getId()
+        );
+        return new Staff(profileData, position, salary, retire);
     }
 
     @Override
     public boolean equals(Object object) {
         Staff staff = (Staff) object;
         return super.equals(object) && staff.getPosition().equals(position)
-                && staff.getRetire() == retier && staff.getSalary() == salary;
+                && staff.getRetire() == retire && staff.getSalary() == salary;
     }
 
     @Override
     public String toString() {
-        return (super.toString() + "\t" + position + "\t " + salary + "     " + retier);
+        return (super.toString() + "\t" + position + "\t " + salary + "     " + retire);
     }
 
 }
