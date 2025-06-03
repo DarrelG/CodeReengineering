@@ -93,9 +93,14 @@ public class CarStore extends Profile {
 
     @Override
     public Profile clone(){
-        
-    	CarStore C = new CarStore(name,  address,  contactNumber,  email, ID );
-        return C;
+        ProfileData carStoreData = new ProfileData(
+                getName(),
+                getAddress(),
+                getContactNumber(),
+                getEmail(),
+                getId());
+    	CarStore carStore = new CarStore(carStoreData);
+        return carStore;
     }
 
     @Override
