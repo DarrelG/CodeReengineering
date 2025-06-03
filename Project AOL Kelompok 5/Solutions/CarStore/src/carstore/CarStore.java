@@ -30,8 +30,8 @@ public class CarStore extends Profile {
      private HashMap<Integer, Profile> customers = new HashMap<>();
     private  HashMap <Integer,Vehicle> inventory = new HashMap<>() ;
 
-    public CarStore (String name, String address, String contactNumber, String website, int ID) {
-    	super(name, address, contactNumber, website, ID);
+    public CarStore (ProfileData data) {
+    	super(data);
     }
 
     
@@ -61,7 +61,7 @@ public class CarStore extends Profile {
     }
     
    public void insertCar( Vehicle car){
-	   	inventory.put(car.ID, car);
+	   	inventory.put(car.getID(), car);
    }
    
    public Vehicle searseCar(int ID){
@@ -82,17 +82,18 @@ public class CarStore extends Profile {
 
     @Override
     public String toString(){
-    	return  "name          : " +name+
-    			"\ndescribion    : "+ DESCRIPTION
-    			+"\nYearofSet     : " +YEAROFSET
-    			+ "\nwebsite       : "
-    			+email+
-    			"\naddress       : "+address+
-    			" \nContactNumber : "+contactNumber;
+        return  "name          : " + getName() +
+                "\ndescribion    : "+ DESCRIPTION
+                +"\nYearofSet     : " +YEAROFSET
+                + "\nwebsite       : "
+                + getEmail() +
+                "\naddress       : " + getAddress() +
+                " \nContactNumber : " + getContactNumber();
     }
 
     @Override
     public Profile clone(){
+        
     	CarStore C = new CarStore(name,  address,  contactNumber,  email, ID );
         return C;
     }

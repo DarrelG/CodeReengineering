@@ -26,9 +26,9 @@ import java.util.Scanner;
 public class CarStoreApp {
 
 	public static void main(String[] args) {
-
-		CarStore Shop = new CarStore("The Car Store", "2520 N Salisbury Blvd", "(410) 334-3500",
+		ProfileData carStoreProfile = new ProfileData("The Car Store", "2520 N Salisbury Blvd", "(410) 334-3500",
 				"http://thecarstoreonline.com/", 0);
+		CarStore Shop = new CarStore(carStoreProfile);
 		System.out.print(Shop.toString() + "\n");
 		printline();
 

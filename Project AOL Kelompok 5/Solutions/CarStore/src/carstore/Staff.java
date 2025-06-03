@@ -7,6 +7,8 @@ Summary of Staff :
 1-   Staff class represents  details of Empyees  
 */
 
+import java.util.Objects;
+
 /*
  * Smell code   : Long parameter list
  * Reason       : Parameter pada constructor telalu panjang.
@@ -63,6 +65,11 @@ public class Staff extends Profile {
         Staff staff = (Staff) object;
         return super.equals(object) && staff.getPosition().equals(position)
                 && staff.getRetire() == retire && staff.getSalary() == salary;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), position, salary, retire);
     }
 
     @Override
