@@ -52,38 +52,41 @@ public class Profile {
     }
 
     @Override
-    public String toString() {
-        return String.format("%s\t%s\t%s\t%s\t%d",
-                data.getName(),
-                data.getAddress(),
-                data.getContactNumber(),
-                data.getEmail(),
-                data.getID());
-    }
+public String toString() {
+    return String.format("%s\t%s\t%s\t%s\t%d",
+            getName(),
+            getAddress(),
+            getContactNumber(),
+            getEmail(),
+            getId());
+}
 
-    @Override
-    public Profile clone() {
-        return new Profile(new ProfileData(
-                data.getName(),
-                data.getAddress(),
-                data.getContactNumber(),
-                data.getEmail(),
-                data.getID()));
-    }
+@Override
+public Profile clone() {
+    return new Profile(new ProfileData(
+            getName(),
+            getAddress(),
+            getContactNumber(),
+            getEmail(),
+            getId()));
+}
 
-    @Override
-    public boolean equals(Object obj) {
-        Profile other = (Profile) obj;
-        return Objects.equals(data.getName(), other.getName()) &&
-               Objects.equals(data.getAddress(), other.getAddress()) &&
-               Objects.equals(data.getContactNumber(), other.getContactNumber()) &&
-               Objects.equals(data.getEmail(), other.getEmail()) &&
-               data.getID() == other.getId();
-    }
+@Override
+public boolean equals(Object obj) {
+    if (this == obj) return true;
+    if (obj == null || getClass() != obj.getClass()) return false;
+    Profile other = (Profile) obj;
+    return getId() == other.getId() &&
+           Objects.equals(getName(), other.getName()) &&
+           Objects.equals(getAddress(), other.getAddress()) &&
+           Objects.equals(getContactNumber(), other.getContactNumber()) &&
+           Objects.equals(getEmail(), other.getEmail());
+}
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(data.getName(), data.getAddress(),
-                data.getContactNumber(), data.getEmail(), data.getID());
-    }
+@Override
+public int hashCode() {
+    return Objects.hash(getName(), getAddress(),
+            getContactNumber(), getEmail(), getId());
+}
+
 }
