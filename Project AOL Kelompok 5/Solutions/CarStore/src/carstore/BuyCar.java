@@ -64,9 +64,10 @@ public class BuyCar {
            String address = s.nextLine();
            String  contactNumber = s.nextLine();
            String email = s.nextLine();
-           Profile l =new Profile(name,address,contactNumber,email,0);
-           d.insertCustomer(l);
-           result="name of customer :"+l.getName()
+           ProfileData data =new ProfileData(name,address,contactNumber,email,0);
+           Profile customer = new Profile(data);
+           d.insertCustomer(customer);
+           result="name of customer :"+customer.getName()
            	+"\nname of store    :  "+d.name
                +"\ncar model        :" + car.model
                +"\npaid price       :"+car.price
