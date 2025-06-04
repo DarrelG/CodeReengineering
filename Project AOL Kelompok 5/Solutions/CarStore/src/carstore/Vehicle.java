@@ -12,6 +12,10 @@ the porbuse of this Vehicle is
 */
 
 /*
+ * Smell code   : Long parameter list
+ * Reason       : Parameter pada constructor telalu panjang.
+ * Solution     : Membuat objek ProfileData untuk mengurangi parameter pada constructor
+ * 
  * Smell code   : The Comments
  * Reason       : Banyak komentar yang tidak penting
  * Solution     : Menghapus comment dan mengganti penamaan variable agar lebih deskriptif

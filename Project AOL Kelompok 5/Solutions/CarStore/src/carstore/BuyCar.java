@@ -45,9 +45,9 @@ public class BuyCar {
    	 if(choise2==1) { 
    		 System.out.println("then entre it ID ");
            
-   		 int ID = input.nextInt();
+   		 int id = input.nextInt();
            
-   		 Vehicle car = carStore.searseCar(ID);
+   		 Vehicle car = carStore.searseCar(id);
    		 System.out.print("here is it all details  ");
    		 System.out.println( car.toString());
    		 System.out.print( "sure u want it then go to fainlize put it price");

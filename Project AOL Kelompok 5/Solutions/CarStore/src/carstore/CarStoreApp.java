@@ -54,22 +54,22 @@ public class CarStoreApp {
 		printline();
 
 		System.out.println("test of search and delete of customer ,staff and cars ");
-		Scanner g = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);
 
 		System.out.println("Entr Id of items u want to delet or search ");
-		int ID = g.nextInt();
+		int id = input.nextInt();
 
-		System.out.println(Shop.searseCustomer(ID).toString());
+		System.out.println(Shop.searseCustomer(id).toString());
 		printline();
 
-		System.out.println(Shop.searseStaff(ID).toString());
+		System.out.println(Shop.searseStaff(id).toString());
 		printline();
 
-		Shop.deleteEmpoyee(ID);
+		Shop.deleteEmpoyee(id);
 
-		Shop.deleteCar(ID);
+		Shop.deleteCar(id);
 
-		Shop.deleteCustomer(ID);
+		Shop.deleteCustomer(id);
 	}
 
 	private static void insertCar(CarStore Shop) {

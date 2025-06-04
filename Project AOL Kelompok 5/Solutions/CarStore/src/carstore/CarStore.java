@@ -39,37 +39,37 @@ public class CarStore extends Profile {
     	staff.put(employee.getId(), employee);
     }
    
-    public Staff searseStaff(int ID){
-    	return staff.get(ID);
+    public Staff searseStaff(int id){
+    	return staff.get(id);
     }
     
     
-    public void deleteEmpoyee(int ID){
-    	staff.remove(ID);
+    public void deleteEmpoyee(int id){
+    	staff.remove(id);
     }
     
    public void insertCustomer(Profile customer){
       customers.put(customer.getId(), customer);
   }
 
-  public Profile searseCustomer(int ID){
-      return customers.get(ID);
+  public Profile searseCustomer(int id){
+      return customers.get(id);
   }
 
-    public void deleteCustomer(int ID){
-    	customers.remove(ID);
+    public void deleteCustomer(int id){
+    	customers.remove(id);
     }
     
    public void insertCar( Vehicle car){
 	   	inventory.put(car.getID(), car);
    }
    
-   public Vehicle searseCar(int ID){
-	   return inventory.get(ID);
+   public Vehicle searseCar(int id){
+	   return inventory.get(id);
    }
     
-   public void deleteCar(int ID){
-	   inventory.remove(ID);
+   public void deleteCar(int id){
+	   inventory.remove(id);
    }
    
     public int getyearOfset(){
@@ -112,7 +112,7 @@ public class CarStore extends Profile {
 
     public void showInventory(){
     	System.out.println("model \t\t\t make  \t madeIn  \tcolour  FuelType  \tYearIntroduced       "   
-                + "\tspeed \t ID"
+                + "\tspeed \t id"
                 + "\tpower \t price"
                 + "\n");
     	
@@ -122,7 +122,7 @@ public class CarStore extends Profile {
     }
  
     public void showStaffDetails(){
-    	System.out.println("Name\t Address     \t Contact Number            E-mail                  ID        "
+    	System.out.println("Name\t Address     \t Contact Number            E-mail                  id        "
                 + "        Position    "
                 + "                saraly      retire       ");
     	
@@ -132,7 +132,7 @@ public class CarStore extends Profile {
     }
   
     public void showCustomersDetails(){
-		System.out.println("Name\t Address     \t Contact Number            E-mail                  ID "  );
+		System.out.println("Name\t Address     \t Contact Number            E-mail                  id "  );
 		
     	 for (int key :customers.keySet()){
         System.out.println(customers.get(key).toString());
