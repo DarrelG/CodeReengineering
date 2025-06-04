@@ -21,14 +21,14 @@ Summary of CarStore :
 
 import java.util.HashMap;
 
-public class CarStore extends Profile {
+public class CarStore extends ProfileData{
      
 	private static final int YEAROFSET =1995;
     private static final  String DESCRIPTION = "We love Cars--We love People.. Come experience The Car Store difference.";
     
-    private  HashMap <Integer,Staff> staff = new HashMap<>() ;
-     private HashMap<Integer, Profile> customers = new HashMap<>();
-    private  HashMap <Integer,Vehicle> inventory = new HashMap<>() ;
+    private HashMap <Integer,Staff> staff = new HashMap<>() ;
+    private HashMap<Integer, Profile> customers = new HashMap<>();
+    protected static HashMap <Integer,Vehicle> inventory = new HashMap<>() ;
 
     public CarStore (ProfileData data) {
     	super(data);
@@ -79,28 +79,34 @@ public class CarStore extends Profile {
     public String getdescription(){
     	return DESCRIPTION;
     }
-
-    @Override
-    public String toString(){
-        return  "name          : " + getName() +
-                "\ndescribion    : "+ DESCRIPTION
-                +"\nYearofSet     : " +YEAROFSET
-                + "\nwebsite       : "
-                + getEmail() +
-                "\naddress       : " + getAddress() +
-                " \nContactNumber : " + getContactNumber();
+    
+    public void searchByModel(String model){
+    	HashMap <Integer,Vehicle> search = new HashMap<>();
+    	for (int key :inventory.keySet()){
+    		if(inventory.get(key).getModel().equalsIgnoreCase(model)){
+    			search.put(key,inventory.get(key) );
+    		}
+    	}
+    	for (int key :search.keySet()){
+    		System.out.println(search.get(key).toString());
+    	}  
     }
 
     @Override
-    public Profile clone(){
-        ProfileData carStoreData = new ProfileData(
-                getName(),
-                getAddress(),
-                getContactNumber(),
-                getEmail(),
-                getId());
-    	CarStore carStore = new CarStore(carStoreData);
-        return carStore;
+    public String toString(){
+    	return  "name          : " + getName() +
+    			"\ndescribion    : "+ DESCRIPTION
+    			+"\nYearofSet     : " +YEAROFSET
+    			+ "\nwebsite       : "
+    			+getEmail()+
+    			"\naddress       : "+getAddress()+
+    			" \nContactNumber : "+getContactNumber();
+    }
+
+    @Override
+    public ProfileData clone(){
+    	CarStore C = new CarStore(name,  address,  contactNumber,  email, ID );
+        return C;
     }
 
     @Override
