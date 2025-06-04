@@ -80,18 +80,6 @@ public class CarStore extends ProfileData{
     	return DESCRIPTION;
     }
     
-    public void searchByModel(String model){
-    	HashMap <Integer,Vehicle> search = new HashMap<>();
-    	for (int key :inventory.keySet()){
-    		if(inventory.get(key).getModel().equalsIgnoreCase(model)){
-    			search.put(key,inventory.get(key) );
-    		}
-    	}
-    	for (int key :search.keySet()){
-    		System.out.println(search.get(key).toString());
-    	}  
-    }
-
     @Override
     public String toString(){
     	return  "name          : " + getName() +
@@ -105,15 +93,15 @@ public class CarStore extends ProfileData{
 
     @Override
     public ProfileData clone(){
-    	CarStore C = new CarStore(getName(),  getAddress(),  getContactNumber(),  getEmail(), getID() );
-        return C;
+    	CarStore carStore = new CarStore(getName(),  getAddress(),  getContactNumber(),  getEmail(), getID() );
+        return carStore;
     }
 
     @Override
-    public boolean equals(Object O){
-    	CarStore c =(CarStore)O;
+    public boolean equals(Object Object){
+    	CarStore c =(CarStore)Object;
         
-    	return super.equals(O)&& c.getdescription().equals(DESCRIPTION) && c.getyearOfset() == YEAROFSET;
+    	return super.equals(Object)&& c.getdescription().equals(DESCRIPTION) && c.getyearOfset() == YEAROFSET;
     }
 
     public void showInventory(){
