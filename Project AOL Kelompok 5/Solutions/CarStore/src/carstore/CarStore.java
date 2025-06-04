@@ -30,8 +30,8 @@ public class CarStore extends ProfileData{
     private HashMap<Integer, Profile> customers = new HashMap<>();
     protected static HashMap <Integer,Vehicle> inventory = new HashMap<>() ;
 
-    public CarStore (String name, String address, String contactNumber, String website, int ID) {
-    	super(name, address, contactNumber, website, ID);
+    public CarStore (ProfileData data) {
+    	super(data);
     }
 
     
