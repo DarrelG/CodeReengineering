@@ -30,8 +30,8 @@ public class CarStore extends ProfileData{
     private HashMap<Integer, Profile> customers = new HashMap<>();
     protected static HashMap <Integer,Vehicle> inventory = new HashMap<>() ;
 
-    public CarStore (ProfileData data) {
-    	super(data);
+    public CarStore (String name, String address, String contactNumber, String website, int ID) {
+        super(name, address, contactNumber, website, ID);
     }
 
     
@@ -105,7 +105,7 @@ public class CarStore extends ProfileData{
 
     @Override
     public ProfileData clone(){
-    	CarStore C = new CarStore(name,  address,  contactNumber,  email, ID );
+    	CarStore C = new CarStore(getName(),  getAddress(),  getContactNumber(),  getEmail(), getID() );
         return C;
     }
 

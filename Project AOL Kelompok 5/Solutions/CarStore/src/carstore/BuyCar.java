@@ -21,19 +21,19 @@ public class BuyCar {
            
            case 2: 
                System.out.println("Enter from and to price plz :)");
-               double from= s.nextDouble() ;double to =s.nextDouble();
+               double from= input.nextDouble() ;double to =input.nextDouble();
                SearchData.searchByPrice(from, to);
                break;
            
            case 3:               
                System.out.println("Enter model plz :)");
-               String model =s.nextLine();
+               String model =input.nextLine();
                SearchData.searchByModel(model);
                break;
                
            case 4:   
                System.out.println("Enter model plz :)");
-               String make =s.nextLine();
+               String make =input.nextLine();
                SearchData.searchByMake(make);
                break;
    	 }
@@ -68,7 +68,7 @@ public class BuyCar {
            Profile customer = new Profile(data);
            carStore.insertCustomer(customer);
            result="name of customer :"+customer.getName()
-           	+"\nname of store    :  "+d.getName()
+           	+"\nname of store    :  "+carStore.getName()
                +"\ncar model        :" + car.getModel()
                +"\npaid price       :"+car.getPrice()
                + "\n remain          :"+ (price-car.getPrice());
