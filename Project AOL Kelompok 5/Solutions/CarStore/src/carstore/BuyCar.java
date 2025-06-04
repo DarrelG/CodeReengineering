@@ -22,19 +22,19 @@ public class BuyCar {
            case 2: 
                System.out.println("Enter from and to price plz :)");
                double from= s.nextDouble() ;double to =s.nextDouble();
-               d.searchByPrice(from, to);
+               SearchData.searchByPrice(from, to);
                break;
            
            case 3:               
                System.out.println("Enter model plz :)");
                String model =s.nextLine();
-               d.searchByModel(model);
+               SearchData.searchByModel(model);
                break;
                
            case 4:   
                System.out.println("Enter model plz :)");
                String make =s.nextLine();
-               d.searchByMake(make);
+               SearchData.searchByMake(make);
                break;
    	 }
        
@@ -54,7 +54,7 @@ public class BuyCar {
            
    		 double price = s.nextDouble();
 
-           while(checkPrice(price,car.price)!=true){
+           while(checkPrice(price,car.getPrice())!=true){
            	System.out.println("plz reput price as it lass than car price");
            	price =s.nextInt();
            }
@@ -68,10 +68,10 @@ public class BuyCar {
            Profile customer = new Profile(data);
            d.insertCustomer(customer);
            result="name of customer :"+customer.getName()
-           	+"\nname of store    :  "+d.name
-               +"\ncar model        :" + car.model
-               +"\npaid price       :"+car.price
-               + "\n remain          :"+ (price-car.price);
+           	+"\nname of store    :  "+d.getName()
+               +"\ncar model        :" + car.getModel()
+               +"\npaid price       :"+car.getPrice()
+               + "\n remain          :"+ (price-car.getPrice());
          
        }else if(choise2 == 2) {
        	  result="thank u for visiting us :)";
