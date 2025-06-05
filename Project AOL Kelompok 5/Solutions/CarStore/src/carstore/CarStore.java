@@ -28,12 +28,15 @@ public class CarStore extends ProfileData{
     
     private HashMap <Integer,Staff> staff = new HashMap<>() ;
     private HashMap<Integer, Profile> customers = new HashMap<>();
-    protected static HashMap <Integer,Vehicle> inventory = new HashMap<>() ;
+    private static HashMap <Integer,Vehicle> inventory = new HashMap<>() ;
 
     public CarStore (String name, String address, String contactNumber, String website, int ID) {
         super(name, address, contactNumber, website, ID);
     }
-
+    
+    public static HashMap <Integer,Vehicle> getInventory(){
+    	return inventory;
+    }
     
     public void insertEmployee(Staff employee){
     	staff.put(employee.getId(), employee);
